@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:fyp_aneeq/screens/diseaseproblem.dart';
 import 'package:fyp_aneeq/screens/donatefind.dart';
 import 'package:fyp_aneeq/screens/profile.dart';
 import 'package:fyp_aneeq/screens/requestpage.dart';
@@ -37,10 +38,17 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       appBar: AppBar(
-        actions: [IconButton(icon: Icon(Icons.person,color: Colors.white,), onPressed: (){
+        actions: [
+          IconButton(icon: Icon(Icons.person,color: Colors.white,), onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
 
-        })],
+        }),
+          IconButton(icon: Icon(Icons.description,color: Colors.white,), onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>Disease()));
+
+          }),
+
+        ],
         backgroundColor: AppColors.primary,
         title: Text(
           'Bloodify',
