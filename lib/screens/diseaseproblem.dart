@@ -8,6 +8,8 @@ class Disease extends StatefulWidget {
 }
 
 class _DiseaseState extends State<Disease> {
+  var _selectMos = 'A+';
+  var _mosList = ['A+','A-','B+','B-','O+','O-','AB+','AB-',];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +60,21 @@ class _DiseaseState extends State<Disease> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left:12.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Type here..."
-                    ),
+                  child: DropdownButton<String>(
+                    underline: SizedBox(),
+                    isExpanded: true,
+                    value: _selectMos,
+                    onChanged: (String newValue) {
+                      setState(() {
+                        this._selectMos = newValue;
+                      });
+                    },
+                    items: _mosList.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Center(child: Text(value)),
+                      );
+                    }).toList(),
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_aneeq/res.dart';
 import 'package:fyp_aneeq/screens/donationhistory.dart';
 
 import '../theme.dart';
@@ -35,6 +36,7 @@ class _DonationFinderState extends State<DonationFinder> {
                 style: TextStyle(
                   fontSize: 22,
                 )),
+
             Container(
               height: MediaQuery.of(context).size.height-150,
               child: ListView.builder(itemCount: 8,itemBuilder: (BuildContext context, int index) {
@@ -57,50 +59,68 @@ class _DonationFinderState extends State<DonationFinder> {
         ),
         height: 200,
         width: MediaQuery.of(context).size.width,
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
               children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.network(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqJ5Ysh_J7_lcGztBLeGTenezYaWt39DsrEg&usqp=CAU",
-                      width: 70,
-                      height: 70,
-                    )),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.network(
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqJ5Ysh_J7_lcGztBLeGTenezYaWt39DsrEg&usqp=CAU",
+                          width: 70,
+                          height: 70,
+                        )),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    Text('Name',style: TextStyle(fontSize: 16),),
+                    Text('Contact',style: TextStyle(fontSize: 16),),
+                    Text('Blood type',style: TextStyle(fontSize: 16),),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+
+                  children: [
+                    RaisedButton(
+                      color: AppColors.primary,
+                      onPressed: (){
+
+                    },child: Text('Accept'),),
+                    RaisedButton(
+                      color: AppColors.primary,
+
+                      onPressed: (){
+
+                    },child: Text('Decline'),)
+                  ],
+                )
               ],
             ),
-            Column(
+            SizedBox(height: 15,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-
               children: [
-                Text('Name',style: TextStyle(fontSize: 16),),
-                Text('Location',style: TextStyle(fontSize: 16),),
-                Text('Contact',style: TextStyle(fontSize: 16),),
-                Text('Blood type',style: TextStyle(fontSize: 16),),
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              Icon(Icons.location_on),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Lorem ipsum dummy address',style: TextStyle(fontSize: 16),),
+              ),
 
-              children: [
-                RaisedButton(
-                  color: AppColors.primary,
-                  onPressed: (){
-
-                },child: Text('Accept'),),
-                RaisedButton(
-                  color: AppColors.primary,
-
-                  onPressed: (){
-
-                },child: Text('Decline'),)
-              ],
-            )
+            ],)
           ],
         ),
       ),
