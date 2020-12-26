@@ -10,6 +10,11 @@ class Request extends StatefulWidget {
 
 class _RequestState extends State<Request> {
   bool isCrit = false ;
+  var _selectMos = 'Blood Group';
+  var _mosList = ['Blood Group','A+','A-','B+','B-','O+','O-','AB+','AB-',];
+  var _unit = '1';
+  var _unitList = ['1','2','3','4'];
+  int _groupValue = -1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +58,21 @@ class _RequestState extends State<Request> {
               ),
               child: Padding(
                 padding: const EdgeInsets.only(left:12.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Type here..."
-                  ),
+                child: DropdownButton<String>(
+                  underline: SizedBox(),
+                  isExpanded: true,
+                  value: _selectMos,
+                  onChanged: (String newValue) {
+                    setState(() {
+                      this._selectMos = newValue;
+                    });
+                  },
+                  items: _mosList.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Center(child: Text(value)),
+                    );
+                  }).toList(),
                 ),
               ),
             ),
@@ -76,11 +91,21 @@ class _RequestState extends State<Request> {
               ),
               child: Padding(
                 padding: const EdgeInsets.only(left:12.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Type here..."
-                  ),
+                child:DropdownButton<String>(
+                  underline: SizedBox(),
+                  isExpanded: true,
+                  value: _unit,
+                  onChanged: (String newValue) {
+                    setState(() {
+                      this._unit = newValue;
+                    });
+                  },
+                  items: _unitList.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Center(child: Text(value)),
+                    );
+                  }).toList(),
                 ),
               ),
             ),
@@ -96,15 +121,30 @@ class _RequestState extends State<Request> {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.circle),
-                    Text("Blood",style: TextStyle(fontSize: 16),),
+
+                    Container(
+                      width: 150,
+                      height: 50,
+                      child: _myRadioButton(
+                        title: "Blood",
+                        value: 0,
+                        onChanged: (newValue) => setState(() => _groupValue = newValue),
+                      ),
+                    ),
 
       ],
                 ),
                 Row(
                   children: [
-                    Icon(Icons.circle),
-                    Text("Palestate",style: TextStyle(fontSize: 16),),
+                    Container(
+                      width: 160,
+                      height: 50,
+                      child: _myRadioButton(
+                        title: "Palestate",
+                        value: 1,
+                        onChanged: (newValue) => setState(() => _groupValue = newValue),
+                      ),
+                    ),
 
       ],
                 ),
@@ -158,6 +198,14 @@ class _RequestState extends State<Request> {
         ],
         ),
       ),
+    );
+  }
+  Widget _myRadioButton({String title, int value, Function onChanged}) {
+    return RadioListTile(
+      value: value,
+      groupValue: _groupValue,
+      onChanged: onChanged,
+      title: Text(title),
     );
   }
 }

@@ -8,6 +8,8 @@ class Edit_Profile extends StatefulWidget {
 }
 
 class _Edit_ProfileState extends State<Edit_Profile> {
+  var _selectMos = 'Blood Group';
+  var _mosList = ['Blood Group','A+','A-','B+','B-','O+','O-','AB+','AB-',];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +47,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                 height: 15,
               ),
               Text(
-                "Profile",
+                "Edit Profile",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(
@@ -107,12 +109,12 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black45)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Name: '),
                               Container(
                                   width: 100,
-                                  child: TextField(                                    enabled: true,
+                                  child: TextField(
+                                    enabled: true,
 
                                     decoration: InputDecoration(
                                         border: InputBorder.none),
@@ -129,7 +131,6 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black45)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Email: '),
                               Container(
@@ -151,7 +152,6 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black45)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Contact: '),
                               Container(
@@ -173,7 +173,6 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black45)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('DOB: '),
                               Container(
@@ -209,6 +208,41 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 170,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black45)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 150,
+                                child: DropdownButton<String>(
+                                  underline: SizedBox(),
+                                  isExpanded: true,
+                                  value: _selectMos,
+                                  onChanged: (String newValue) {
+                                    setState(() {
+                                      this._selectMos = newValue;
+                                    });
+                                  },
+                                  items: _mosList.map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Center(child: Text(value)),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
                     ],
                   )
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_aneeq/screens/edit_profile.dart';
 import 'package:fyp_aneeq/theme.dart';
 
 class Profile extends StatefulWidget {
@@ -7,6 +8,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  var _selectMos = 'Blood Group';
+  var _mosList = ['Blood Group','A+','A-','B+','B-','O+','O-','AB+','AB-',];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,14 +17,13 @@ class _ProfileState extends State<Profile> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            RaisedButton(onPressed: (){
-
+            RaisedButton(onPressed: (){Navigator.pop(context);
             },
               color: AppColors.primary,
               child: Text('Back',style: TextStyle(color: Colors.white),),
             ),
             RaisedButton(onPressed: (){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Edit_Profile()));
             },
               color: AppColors.primary,
               child: Text('Edit',style: TextStyle(color: Colors.white),),
@@ -56,7 +58,7 @@ class _ProfileState extends State<Profile> {
                   Column(
                     children: [
                       ClipRRect(
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(50),
                           child: Image.network(
                             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqJ5Ysh_J7_lcGztBLeGTenezYaWt39DsrEg&usqp=CAU",
                             width: 100,
@@ -204,6 +206,40 @@ class _ProfileState extends State<Profile> {
                                     decoration: InputDecoration(
                                         border: InputBorder.none),
                                   ))
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 170,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black45)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 150,
+                                child: DropdownButton<String>(
+                                  underline: SizedBox(),
+                                  isExpanded: true,
+                                  value: _selectMos,
+                                  onChanged: (String newValue) {
+                                    setState(() {
+                                      this._selectMos = newValue;
+                                    });
+                                  },
+                                  items: _mosList.map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Center(child: Text(value)),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                             ],
                           ),
                         ),

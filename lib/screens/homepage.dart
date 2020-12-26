@@ -21,18 +21,30 @@ class _HomepageState extends State<Homepage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            RaisedButton(onPressed: (){
+            Container(
+              width: 150,
+              height: 50,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+
+                onPressed: (){
       Navigator.push(context, MaterialPageRoute(builder: (context)=>DonationFinder()));
 
-            },
-              color: AppColors.primary,
-              child: Text('Donate',style: TextStyle(color: Colors.white),),
-            ),
-            RaisedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Request()));
               },
-              color: AppColors.primary,
-              child: Text('Request',style: TextStyle(color: Colors.white),),
+                color: AppColors.primary,
+                child: Text('Donate',style: TextStyle(color: Colors.white),),
+              ),
+            ),
+            Container(  width: 150,
+              height: 50,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Request()));
+                },
+                color: AppColors.primary,
+                child: Text('Request',style: TextStyle(color: Colors.white),),
+              ),
             )
           ],
         ),
@@ -61,7 +73,7 @@ class _HomepageState extends State<Homepage> {
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: Container(
-                height: 190,
+                height: 250,
                 child: Swiper(
                   itemBuilder: (BuildContext context, int index) {
                     return buildList(context, index);
@@ -73,7 +85,7 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
 
-            SizedBox(height: 25,),
+            SizedBox(height: 80,),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

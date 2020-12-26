@@ -66,7 +66,7 @@ class _DonationFinderState extends State<DonationFinder> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(50),
                     child: Image.network(
                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqJ5Ysh_J7_lcGztBLeGTenezYaWt39DsrEg&usqp=CAU",
                       width: 70,
