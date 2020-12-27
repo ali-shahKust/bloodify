@@ -10,6 +10,8 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   var _selectMos = 'Blood Group';
   var _mosList = ['Blood Group','A+','A-','B+','B-','O+','O-','AB+','AB-',];
+  var _selectdes = 'Cancer';
+  var _DiseaseList = ['Cancer','Sugar','Malaria',];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,20 +78,33 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          width: 120,
-                          height: 40,
+                          width: 130,
+                          height: 50,
                           decoration: BoxDecoration(
                               border: Border.all(color: Colors.black45)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                  width: 100,
-                                  child: TextField(
-                                    enabled: false,
-                                    decoration: InputDecoration(
-                                        border: InputBorder.none),
-                                  ))
+                                height: 40,
+                                width: 120,
+                                child: DropdownButton<String>(
+                                  underline: SizedBox(),
+                                  isExpanded: true,
+                                  value: _selectdes,
+                                  onChanged: (String newValue) {
+                                    setState(() {
+                                      this._selectdes = newValue;
+                                    });
+                                  },
+                                  items: _DiseaseList.map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Center(child: Text(value)),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                             ],
                           ),
                         ),

@@ -5,6 +5,7 @@ import 'package:fyp_aneeq/screens/diseaseproblem.dart';
 import 'package:fyp_aneeq/screens/donatefind.dart';
 import 'package:fyp_aneeq/screens/profile.dart';
 import 'package:fyp_aneeq/screens/requestpage.dart';
+import 'package:fyp_aneeq/sidenavigations.dart';
 
 import '../theme.dart';
 
@@ -12,11 +13,13 @@ class Homepage extends StatefulWidget {
   @override
   _HomepageState createState() => _HomepageState();
 }
-
+final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key:  _scaffoldKey,
+      drawer: SideNavigation(),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -50,11 +53,17 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       appBar: AppBar(
-        actions: [
-          IconButton(icon: Icon(Icons.person,color: Colors.white,), onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
+        leading: GestureDetector(
+            onTap: () {
+              _scaffoldKey.currentState.openDrawer();
+            },
+            child: Icon(
+              Icons.list,
+              color: Colors.white,
+            )),
 
-        }),
+        actions: [
+        
           IconButton(icon: Icon(Icons.description,color: Colors.white,), onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>Disease()));
 
